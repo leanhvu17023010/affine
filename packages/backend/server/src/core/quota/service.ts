@@ -115,10 +115,10 @@ export class QuotaService {
   ): UserQuota {
     return {
       name: this.planName(state.plan),
-      blobLimit: Number(state.blobLimit),
-      storageQuota: Number(state.storageQuota),
+      blobLimit: 1024 * 1024 * 1024 * 10, // 10GB
+      storageQuota: 1024 * 1024 * 1024 * 1000, // 1000GB
       historyPeriod: state.historyPeriodSeconds,
-      memberLimit: state.seatLimit,
+      memberLimit: 9999,
       copilotActionLimit: state.unlimitedCopilot
         ? undefined
         : (state.copilotActionLimit ?? undefined),
@@ -132,10 +132,10 @@ export class QuotaService {
   ): WorkspaceQuota {
     return {
       name: this.planName(state.plan),
-      blobLimit: Number(state.blobLimit),
-      storageQuota: Number(state.storageQuota),
+      blobLimit: 1024 * 1024 * 1024 * 10,
+      storageQuota: 1024 * 1024 * 1024 * 1000,
       historyPeriod: state.historyPeriodSeconds,
-      memberLimit: state.seatLimit,
+      memberLimit: 9999,
       ownerQuota: state.usesOwnerQuota ? state.ownerUserId : undefined,
     };
   }

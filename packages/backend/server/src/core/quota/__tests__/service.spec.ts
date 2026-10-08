@@ -34,14 +34,16 @@ test('QuotaService maps native user plans and numeric fields', async t => {
   const getUserQuotaStateV1 = Sinon.stub();
   const service = new QuotaService({ getUserQuotaStateV1 } as never);
 
-  for (const [plan, name, memberLimit] of [
-    ['free', 'Free', 3],
-    ['pro', 'Pro', 10],
-    ['lifetime_pro', 'Lifetime Pro', 10],
-    ['ai', 'AI', 3],
-    ['team', 'Team', 3],
-    ['selfhost_free', 'Pro', 10],
-    ['selfhost_team', 'Team', 3],
+  const memberLimit = 9999;
+
+  for (const [plan, name] of [
+    ['free', 'Free'],
+    ['pro', 'Pro'],
+    ['lifetime_pro', 'Lifetime Pro'],
+    ['ai', 'AI'],
+    ['team', 'Team'],
+    ['selfhost_free', 'Pro'],
+    ['selfhost_team', 'Team'],
   ] as const) {
     getUserQuotaStateV1.resolves({
       ...userState,
